@@ -419,7 +419,7 @@
 
       const filtered = getFilteredRecords()
         .filter(r => r.date.startsWith(prefix))
-        .sort((a, b) => b.timestamp - a.timestamp);
+        .sort((a, b) => b.date.localeCompare(a.date) || b.timestamp - a.timestamp);
 
       let listHTML = '';
       if (filtered.length === 0) {
