@@ -20,8 +20,21 @@
       --shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif; min-height: 100vh; display: flex; justify-content: center; }
-    #app { width: 100%; max-width: 430px; padding: 16px 16px 32px; display: flex; flex-direction: column; gap: 12px; }
+    body {
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+    #app {
+      width: 100%;
+      max-width: 430px;
+      padding: 16px 16px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
     .card { background: var(--card-bg); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
     .app-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
     .stats-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
@@ -31,14 +44,24 @@
     .progress-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
     .progress-fill { height: 100%; background: var(--primary); border-radius: 4px; transition: width 0.3s; }
     .filter-tabs { display: flex; gap: 8px; }
-    .filter-tab { flex: 1; padding: 8px 4px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: var(--card-bg); font-size: 14px; font-weight: 600; cursor: pointer; text-align: center; transition: all 0.15s; color: var(--text-muted); }
+    .filter-tab {
+      flex: 1; padding: 8px 4px; border: 2px solid var(--border);
+      border-radius: var(--radius-sm); background: var(--card-bg);
+      font-size: 14px; font-weight: 600; cursor: pointer; text-align: center;
+      transition: all 0.15s; color: var(--text-muted);
+    }
     .filter-tab.active { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
     .calendar-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
     .calendar-nav button { background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px 8px; color: var(--text); }
     .calendar-month { font-size: 16px; font-weight: 700; color: var(--text); }
     .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
     .calendar-weekday { text-align: center; font-size: 11px; color: var(--text-muted); padding: 4px 0 8px; font-weight: 600; }
-    .calendar-day { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 50%; font-size: 13px; cursor: pointer; position: relative; gap: 1px; transition: background 0.15s; }
+    .calendar-day {
+      aspect-ratio: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      border-radius: 50%; font-size: 13px; cursor: pointer;
+      position: relative; gap: 1px; transition: background 0.15s;
+    }
     .calendar-day.today { font-weight: 700; color: var(--primary); }
     .calendar-day.selected { background: var(--primary); color: #fff !important; }
     .calendar-day.selected .day-icons { filter: brightness(10); }
@@ -47,7 +70,12 @@
     .day-num { font-size: 13px; line-height: 1; }
     .day-icons { font-size: 10px; line-height: 1; }
     .checkin-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .checkin-btn { padding: 18px 8px; border: none; border-radius: var(--radius); font-size: 18px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: transform 0.1s, opacity 0.1s; }
+    .checkin-btn {
+      padding: 18px 8px; border: none; border-radius: var(--radius);
+      font-size: 18px; font-weight: 700; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      transition: transform 0.1s, opacity 0.1s;
+    }
     .checkin-btn:active { transform: scale(0.96); }
     .checkin-btn.wife-btn { background: #FFE8F0; color: var(--wife-color); }
     .checkin-btn.husband-btn { background: var(--primary-light); color: var(--husband-color); }
@@ -56,7 +84,10 @@
     .checkin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .section-title { font-size: 14px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; }
     .record-list { max-height: 80vh; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
-    .record-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 4px; border-bottom: 1px solid var(--border); }
+    .record-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 4px; border-bottom: 1px solid var(--border);
+    }
     .record-item:last-child { border-bottom: none; }
     .record-info { display: flex; align-items: center; gap: 8px; }
     .record-date { font-size: 14px; font-weight: 600; color: var(--text); }
@@ -66,9 +97,15 @@
     .record-delete:hover { opacity: 1; }
     .record-empty { text-align: center; color: var(--text-muted); font-size: 14px; padding: 24px 0; }
     .error-msg { text-align: center; color: #e53e3e; padding: 32px 16px; font-size: 15px; }
-    #confirm-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: flex-end; justify-content: center; z-index: 200; }
+    #confirm-modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: none; align-items: flex-end; justify-content: center; z-index: 200;
+    }
     #confirm-modal.show { display: flex; }
-    .confirm-sheet { background: var(--card-bg); border-radius: 20px 20px 0 0; padding: 24px 20px 40px; width: 100%; max-width: 430px; }
+    .confirm-sheet {
+      background: var(--card-bg); border-radius: 20px 20px 0 0;
+      padding: 24px 20px 40px; width: 100%; max-width: 430px;
+    }
     .confirm-msg { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 20px; text-align: center; }
     .confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .confirm-cancel { padding: 14px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: none; font-size: 15px; font-weight: 600; cursor: pointer; color: var(--text-muted); }
@@ -104,125 +141,333 @@
         });
         if (!res.ok) throw new Error(`读取失败 (${res.status})`);
         const data = await res.json();
-        return JSON.parse(data.files['records.json'].content);
+        const file = data.files['records.json'] || Object.values(data.files)[0];
+        if (!file || !file.content) return [];
+        try { return JSON.parse(file.content); } catch { return []; }
       },
       async save(records) {
         const res = await fetch(`https://api.github.com/gists/${CONFIG.GIST_ID}`, {
           method: 'PATCH',
-          headers: { Authorization: `token ${CONFIG.TOKEN}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ files: { 'records.json': { content: JSON.stringify(records, null, 2) } } }),
+          headers: {
+            Authorization: `token ${CONFIG.TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            files: { 'records.json': { content: JSON.stringify(records, null, 2) } },
+          }),
         });
         if (!res.ok) throw new Error(`保存失败 (${res.status})`);
       },
     };
 
-    const State = { records: [], filter: 'all', year: new Date().getFullYear(), month: new Date().getMonth(), selectedDate: null, loading: false, error: null };
+    const State = {
+      records: [],
+      filter: 'all',
+      year: new Date().getFullYear(),
+      month: new Date().getMonth(),
+      selectedDate: null,
+      loading: false,
+      error: null,
+    };
 
-    function getTodayStr() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-    function formatDate(dateStr) { const [, m, d] = dateStr.split('-'); return `${m}/${d}`; }
-    function formatTime(ts) { const d = new Date(ts); return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; }
-    function generateId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
-    function getPersonInfo(value) { return CONFIG.PERSONS[value]; }
-    function getFilteredRecords() { if (State.filter === 'all') return State.records; return State.records.filter(r => r.person === State.filter); }
+    function getTodayStr() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    }
+
+    function formatDate(dateStr) {
+      const [, m, d] = dateStr.split('-');
+      return `${m}/${d}`;
+    }
+
+    function formatTime(ts) {
+      const d = new Date(ts);
+      return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    }
+
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).slice(2);
+    }
+
+    function getPersonInfo(value) {
+      return CONFIG.PERSONS[value];
+    }
+
+    function getFilteredRecords() {
+      if (State.filter === 'all') return State.records;
+      return State.records.filter(r => r.person === State.filter);
+    }
 
     function renderAll() {
       const app = document.getElementById('app');
-      if (State.loading) { app.innerHTML = '<div style="padding:40px;text-align:center;color:#888">加载中…</div>'; return; }
-      if (State.error) { app.innerHTML = `<div class="error-msg">⚠️ ${State.error}<br><br><button onclick="init()" style="padding:8px 20px;border:none;border-radius:8px;background:#FF6B35;color:#fff;cursor:pointer">重试</button></div>`; return; }
-      app.innerHTML = `<div id="section-stats" class="card"></div><div id="section-filter" class="card" style="padding:12px 16px"></div><div id="section-calendar" class="card"></div><div id="section-buttons" class="checkin-btns"></div><div id="section-list" class="card"></div>`;
-      renderStats(); renderFilterTabs(); renderCalendar(); renderButtons(); renderList();
+      if (State.loading) {
+        app.innerHTML = '<div style="padding:40px;text-align:center;color:#888">加载中…</div>';
+        return;
+      }
+      if (State.error) {
+        app.innerHTML = `<div class="error-msg">⚠️ ${State.error}<br><br><button onclick="init()" style="padding:8px 20px;border:none;border-radius:8px;background:#FF6B35;color:#fff;cursor:pointer">重试</button></div>`;
+        return;
+      }
+      app.innerHTML = `
+        <div id="section-stats" class="card"></div>
+        <div id="section-filter" class="card" style="padding:12px 16px"></div>
+        <div id="section-calendar" class="card"></div>
+        <div id="section-buttons" class="checkin-btns"></div>
+        <div id="section-list" class="card"></div>
+      `;
+      renderStats();
+      renderFilterTabs();
+      renderCalendar();
+      renderButtons();
+      renderList();
     }
 
     function renderStats() {
-      const used = State.records.length, total = CONFIG.CARD_TOTAL, remain = total - used;
+      const used = State.records.length;
+      const total = CONFIG.CARD_TOTAL;
+      const remain = total - used;
       const pct = Math.min(used / total * 100, 100).toFixed(1);
-      document.getElementById('section-stats').innerHTML = `<div class="app-title">💪 gymRecord</div><div class="stats-row"><span class="stats-used">${used}</span><span class="stats-total">/ ${total} 次</span><span class="stats-remain">剩余 ${remain} 次</span></div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>`;
+      document.getElementById('section-stats').innerHTML = `
+        <div class="app-title">💪 gymRecord</div>
+        <div class="stats-row">
+          <span class="stats-used">${used}</span>
+          <span class="stats-total">/ ${total} 次</span>
+          <span class="stats-remain">剩余 ${remain} 次</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${pct}%"></div>
+        </div>
+      `;
     }
 
     function renderFilterTabs() {
-      const tabs = [{ value: 'all', label: '全部' }, { value: 'husband', label: `${CONFIG.PERSONS.husband.icon} ${CONFIG.PERSONS.husband.name}` }, { value: 'wife', label: `${CONFIG.PERSONS.wife.icon} ${CONFIG.PERSONS.wife.name}` }];
-      document.getElementById('section-filter').innerHTML = `<div class="filter-tabs">${tabs.map(t => `<button class="filter-tab ${State.filter === t.value ? 'active' : ''}" onclick="handleFilterChange('${t.value}')">${t.label}</button>`).join('')}</div>`;
+      const tabs = [
+        { value: 'all', label: '全部' },
+        { value: 'husband', label: `${CONFIG.PERSONS.husband.icon} ${CONFIG.PERSONS.husband.name}` },
+        { value: 'wife', label: `${CONFIG.PERSONS.wife.icon} ${CONFIG.PERSONS.wife.name}` },
+      ];
+      document.getElementById('section-filter').innerHTML = `
+        <div class="filter-tabs">
+          ${tabs.map(t => `
+            <button class="filter-tab ${State.filter === t.value ? 'active' : ''}"
+              onclick="handleFilterChange('${t.value}')">${t.label}</button>
+          `).join('')}
+        </div>
+      `;
     }
 
-    function handleFilterChange(value) { State.filter = value; renderAll(); }
+    function handleFilterChange(value) {
+      State.filter = value;
+      renderAll();
+    }
 
     function renderCalendar() {
-      const year = State.year, month = State.month, today = getTodayStr();
-      const filtered = getFilteredRecords(), dayMap = {};
-      filtered.forEach(r => { if (!dayMap[r.date]) dayMap[r.date] = new Set(); dayMap[r.date].add(r.person); });
-      const firstDay = new Date(year, month, 1).getDay(), daysInMonth = new Date(year, month + 1, 0).getDate();
+      const year = State.year;
+      const month = State.month;
+      const today = getTodayStr();
+      const filtered = getFilteredRecords();
+      const dayMap = {};
+      filtered.forEach(r => {
+        if (!dayMap[r.date]) dayMap[r.date] = new Set();
+        dayMap[r.date].add(r.person);
+      });
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
       const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
       const weekdays = ['日','一','二','三','四','五','六'];
-      function dayIcon(dateStr) { const p = dayMap[dateStr]; if (!p) return ''; const h = p.has('husband'), w = p.has('wife'); if (h && w) return `${CONFIG.PERSONS.husband.icon}${CONFIG.PERSONS.wife.icon}`; if (h) return CONFIG.PERSONS.husband.icon; return CONFIG.PERSONS.wife.icon; }
+
+      function dayIcon(dateStr) {
+        const persons = dayMap[dateStr];
+        if (!persons) return '';
+        const hasH = persons.has('husband');
+        const hasW = persons.has('wife');
+        if (hasH && hasW) return `${CONFIG.PERSONS.husband.icon}${CONFIG.PERSONS.wife.icon}`;
+        if (hasH) return CONFIG.PERSONS.husband.icon;
+        return CONFIG.PERSONS.wife.icon;
+      }
+
       let cells = '';
       for (let i = 0; i < firstDay; i++) cells += '<div></div>';
       for (let d = 1; d <= daysInMonth; d++) {
         const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-        const isFuture = dateStr > today, isToday = dateStr === today, isSelected = dateStr === State.selectedDate, icon = dayIcon(dateStr);
-        const classes = ['calendar-day', isFuture ? 'future' : '', isToday ? 'today' : '', isSelected ? 'selected' : '', icon ? 'has-record' : ''].filter(Boolean).join(' ');
+        const isFuture = dateStr > today;
+        const isToday = dateStr === today;
+        const isSelected = dateStr === State.selectedDate;
+        const icon = dayIcon(dateStr);
+        const classes = [
+          'calendar-day',
+          isFuture ? 'future' : '',
+          isToday ? 'today' : '',
+          isSelected ? 'selected' : '',
+          icon ? 'has-record' : '',
+        ].filter(Boolean).join(' ');
         const click = isFuture ? '' : `onclick="handleDateClick('${dateStr}')"`;  
-        cells += `<div class="${classes}" ${click}><span class="day-num">${d}</span>${icon ? `<span class="day-icons">${icon}</span>` : ''}</div>`;
+        cells += `
+          <div class="${classes}" ${click}>
+            <span class="day-num">${d}</span>
+            ${icon ? `<span class="day-icons">${icon}</span>` : ''}
+          </div>
+        `;
       }
-      document.getElementById('section-calendar').innerHTML = `<div class="calendar-nav"><button onclick="handleMonthNav(-1)">‹</button><span class="calendar-month">${year}年${monthNames[month]}</span><button onclick="handleMonthNav(1)">›</button></div><div class="calendar-grid">${weekdays.map(w => `<div class="calendar-weekday">${w}</div>`).join('')}${cells}</div>`;
+
+      document.getElementById('section-calendar').innerHTML = `
+        <div class="calendar-nav">
+          <button onclick="handleMonthNav(-1)">‹</button>
+          <span class="calendar-month">${year}年${monthNames[month]}</span>
+          <button onclick="handleMonthNav(1)">›</button>
+        </div>
+        <div class="calendar-grid">
+          ${weekdays.map(w => `<div class="calendar-weekday">${w}</div>`).join('')}
+          ${cells}
+        </div>
+      `;
     }
 
-    function handleDateClick(dateStr) { State.selectedDate = State.selectedDate === dateStr ? null : dateStr; renderAll(); }
-    function handleMonthNav(delta) { let m = State.month + delta, y = State.year; if (m < 0) { m = 11; y--; } if (m > 11) { m = 0; y++; } State.month = m; State.year = y; renderAll(); }
+    function handleDateClick(dateStr) {
+      State.selectedDate = State.selectedDate === dateStr ? null : dateStr;
+      renderAll();
+    }
+
+    function handleMonthNav(delta) {
+      let m = State.month + delta;
+      let y = State.year;
+      if (m < 0) { m = 11; y--; }
+      if (m > 11) { m = 0; y++; }
+      State.month = m;
+      State.year = y;
+      renderAll();
+    }
 
     function showConfirm(msg, onOk) {
       document.getElementById('confirm-msg').textContent = msg;
       document.getElementById('confirm-modal').classList.add('show');
-      document.getElementById('confirm-ok').onclick = () => { document.getElementById('confirm-modal').classList.remove('show'); onOk(); };
-      document.getElementById('confirm-cancel').onclick = () => { document.getElementById('confirm-modal').classList.remove('show'); };
+      document.getElementById('confirm-ok').onclick = () => {
+        document.getElementById('confirm-modal').classList.remove('show');
+        onOk();
+      };
+      document.getElementById('confirm-cancel').onclick = () => {
+        document.getElementById('confirm-modal').classList.remove('show');
+      };
     }
 
     async function handleCheckin(personValue) {
-      const targetDate = State.selectedDate || getTodayStr(), p = getPersonInfo(personValue);
+      const targetDate = State.selectedDate || getTodayStr();
+      const p = getPersonInfo(personValue);
+
       async function doCheckin() {
-        const record = { id: generateId(), person: personValue, date: targetDate, timestamp: Date.now() };
+        const record = {
+          id: generateId(),
+          person: personValue,
+          date: targetDate,
+          timestamp: Date.now(),
+        };
         const newRecords = [...State.records, record];
-        State.loading = true; renderAll();
-        try { await Storage.save(newRecords); State.records = newRecords; State.selectedDate = null; }
-        catch (e) { alert(`保存失败：${e.message}`); }
-        State.loading = false; renderAll();
+        State.loading = true;
+        renderAll();
+        try {
+          await Storage.save(newRecords);
+          State.records = newRecords;
+          State.selectedDate = null;
+        } catch (e) {
+          alert(`保存失败：${e.message}`);
+        }
+        State.loading = false;
+        renderAll();
       }
+
       const isSupplement = !!State.selectedDate;
       const todayCheckedIn = !isSupplement && State.records.some(r => r.person === personValue && r.date === targetDate);
-      if (isSupplement) { showConfirm(`确认为 ${formatDate(targetDate)} 补 ${p.icon}${p.name} 的打卡？`, doCheckin); }
-      else if (todayCheckedIn) { showConfirm(`今天 ${p.icon}${p.name} 已打卡，确认再次打卡？`, doCheckin); }
-      else { await doCheckin(); }
+
+      if (isSupplement) {
+        showConfirm(`确认为 ${formatDate(targetDate)} 补 ${p.icon}${p.name} 的打卡？`, doCheckin);
+      } else if (todayCheckedIn) {
+        showConfirm(`今天 ${p.icon}${p.name} 已打卡，确认再次打卡？`, doCheckin);
+      } else {
+        await doCheckin();
+      }
     }
 
     function renderButtons() {
-      const targetDate = State.selectedDate || getTodayStr(), isSupplement = !!State.selectedDate, dateLabel = isSupplement ? formatDate(targetDate) : '';
+      const targetDate = State.selectedDate || getTodayStr();
+      const isSupplement = !!State.selectedDate;
+      const dateLabel = isSupplement ? formatDate(targetDate) : '';
+
       function btnHTML(personValue) {
-        const p = getPersonInfo(personValue), isWife = personValue === 'wife';
+        const p = getPersonInfo(personValue);
+        const isWife = personValue === 'wife';
         const checkedToday = !isSupplement && State.records.some(r => r.person === personValue && r.date === targetDate);
         const status = (!isSupplement && checkedToday) ? '✓ 今日已打卡' : '';
-        return `<button class="checkin-btn ${isWife ? 'wife-btn' : 'husband-btn'}" onclick="handleCheckin('${personValue}')"><span style="font-size:28px">${p.icon}</span><span class="btn-label">${isSupplement ? `补 ${dateLabel}` : `${p.name}去`}</span><span class="btn-status">${status}</span></button>`;
+        return `
+          <button class="checkin-btn ${isWife ? 'wife-btn' : 'husband-btn'}"
+            onclick="handleCheckin('${personValue}')">
+            <span style="font-size:28px">${p.icon}</span>
+            <span class="btn-label">${isSupplement ? `补 ${dateLabel}` : `${p.name}去`}</span>
+            <span class="btn-status">${status}</span>
+          </button>
+        `;
       }
-      document.getElementById('section-buttons').innerHTML = btnHTML('wife') + btnHTML('husband');
+
+      document.getElementById('section-buttons').innerHTML =
+        btnHTML('wife') + btnHTML('husband');
     }
 
     function renderList() {
-      const year = State.year, month = State.month, prefix = `${year}-${String(month+1).padStart(2,'0')}`;
+      const year = State.year;
+      const month = State.month;
+      const prefix = `${year}-${String(month+1).padStart(2,'0')}`;
       const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-      const filtered = getFilteredRecords().filter(r => r.date.startsWith(prefix)).sort((a, b) => b.timestamp - a.timestamp);
-      let listHTML = filtered.length === 0 ? `<div class="record-empty">${year}年${monthNames[month]}暂无记录</div>` :
-        filtered.map(r => { const p = getPersonInfo(r.person); return `<div class="record-item"><div class="record-info"><span class="record-date">${formatDate(r.date)}</span><span class="record-person">${p.icon}</span><span class="record-date">${p.name}</span><span class="record-time">${formatTime(r.timestamp)}</span></div><button class="record-delete" onclick="handleDelete('${r.id}')">🗑</button></div>`; }).join('');
-      document.getElementById('section-list').innerHTML = `<div class="section-title">${year}年${monthNames[month]}打卡记录</div><div class="record-list">${listHTML}</div>`;
+
+      const filtered = getFilteredRecords()
+        .filter(r => r.date.startsWith(prefix))
+        .sort((a, b) => b.timestamp - a.timestamp);
+
+      let listHTML = '';
+      if (filtered.length === 0) {
+        listHTML = `<div class="record-empty">${year}年${monthNames[month]}暂无记录</div>`;
+      } else {
+        listHTML = filtered.map(r => {
+          const p = getPersonInfo(r.person);
+          return `
+            <div class="record-item">
+              <div class="record-info">
+                <span class="record-date">${formatDate(r.date)}</span>
+                <span class="record-person">${p.icon}</span>
+                <span class="record-date">${p.name}</span>
+                <span class="record-time">${formatTime(r.timestamp)}</span>
+              </div>
+              <button class="record-delete" onclick="handleDelete('${r.id}')">🗑</button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('section-list').innerHTML = `
+        <div class="section-title">${year}年${monthNames[month]}打卡记录</div>
+        <div class="record-list">${listHTML}</div>
+      `;
     }
 
     async function handleDelete(id) {
-      const record = State.records.find(r => r.id === id); if (!record) return;
+      const record = State.records.find(r => r.id === id);
+      if (!record) return;
       const p = getPersonInfo(record.person);
-      showConfirm(`确认撤销 ${formatDate(record.date)} ${p.icon}${p.name} 的打卡？`, async () => {
-        const newRecords = State.records.filter(r => r.id !== id);
-        State.loading = true; renderAll();
-        try { await Storage.save(newRecords); State.records = newRecords; }
-        catch (e) { alert(`删除失败：${e.message}`); }
-        State.loading = false; renderAll();
-      });
+      showConfirm(
+        `确认撤销 ${formatDate(record.date)} ${p.icon}${p.name} 的打卡？`,
+        async () => {
+          const newRecords = State.records.filter(r => r.id !== id);
+          State.loading = true;
+          renderAll();
+          try {
+            await Storage.save(newRecords);
+            State.records = newRecords;
+          } catch (e) {
+            alert(`删除失败：${e.message}`);
+          }
+          State.loading = false;
+          renderAll();
+        }
+      );
     }
 
     function renderSetup() {
@@ -246,23 +491,39 @@
               保存并开始
             </button>
           </div>
-        </div>`;
+        </div>
+      `;
     }
 
     function handleSetupSave() {
       const gistId = document.getElementById('setup-gist-id').value.trim();
       const token = document.getElementById('setup-token').value.trim();
-      if (!gistId || !token) { alert('请填写完整信息'); return; }
-      localStorage.setItem('gym_gist_id', gistId); localStorage.setItem('gym_token', token);
-      CONFIG.GIST_ID = gistId; CONFIG.TOKEN = token; init();
+      if (!gistId || !token) {
+        alert('请填写完整信息');
+        return;
+      }
+      localStorage.setItem('gym_gist_id', gistId);
+      localStorage.setItem('gym_token', token);
+      CONFIG.GIST_ID = gistId;
+      CONFIG.TOKEN = token;
+      init();
     }
 
     async function init() {
-      if (!CONFIG.GIST_ID || !CONFIG.TOKEN) { renderSetup(); return; }
-      State.loading = true; State.error = null; renderAll();
-      try { State.records = await Storage.load(); }
-      catch (e) { State.error = e.message; }
-      State.loading = false; renderAll();
+      if (!CONFIG.GIST_ID || !CONFIG.TOKEN) {
+        renderSetup();
+        return;
+      }
+      State.loading = true;
+      State.error = null;
+      renderAll();
+      try {
+        State.records = await Storage.load();
+      } catch (e) {
+        State.error = e.message;
+      }
+      State.loading = false;
+      renderAll();
     }
 
     init();
