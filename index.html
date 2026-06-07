@@ -363,17 +363,16 @@
           timestamp: Date.now(),
         };
         const newRecords = [...State.records, record];
-        State.loading = true;
+        State.records = newRecords;
+        State.selectedDate = null;
         renderAll();
         try {
           await Storage.save(newRecords);
-          State.records = newRecords;
-          State.selectedDate = null;
         } catch (e) {
+          State.records = State.records.filter(r => r.id !== record.id);
+          renderAll();
           alert(`保存失败：${e.message}`);
         }
-        State.loading = false;
-        renderAll();
       }
 
       const isSupplement = !!State.selectedDate;
@@ -456,16 +455,15 @@
         `确认撤销 ${formatDate(record.date)} ${p.icon}${p.name} 的打卡？`,
         async () => {
           const newRecords = State.records.filter(r => r.id !== id);
-          State.loading = true;
+          State.records = newRecords;
           renderAll();
           try {
             await Storage.save(newRecords);
-            State.records = newRecords;
           } catch (e) {
+            State.records = [...State.records, record];
+            renderAll();
             alert(`删除失败：${e.message}`);
           }
-          State.loading = false;
-          renderAll();
         }
       );
     }
