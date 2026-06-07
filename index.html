@@ -222,9 +222,9 @@
       if (State.error) { app.innerHTML = `<div class="full-msg">⚠️ ${State.error}<br><button class="retry-btn" onclick="init()">重试</button></div>`; return; }
       app.innerHTML = `
         <div id="s-stats" class="card"></div>
-        <div id="s-filter" class="card" style="padding:10px 16px"></div>
         <div id="s-cal" class="card" style="padding:20px 10px"></div>
         <div id="s-btns" class="btn-row"></div>
+        <div id="s-filter" class="card" style="padding:10px 16px"></div>
         <div id="s-list" class="card"></div>
       `;
       renderStats(); renderFilter(); renderCal(); renderBtns(); renderList();
