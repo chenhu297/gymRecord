@@ -160,7 +160,7 @@
         const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
         const isFuture = dateStr > today, isToday = dateStr === today, isSelected = dateStr === State.selectedDate, icon = dayIcon(dateStr);
         const classes = ['calendar-day', isFuture ? 'future' : '', isToday ? 'today' : '', isSelected ? 'selected' : '', icon ? 'has-record' : ''].filter(Boolean).join(' ');
-        const click = isFuture ? '' : `onclick="handleDateClick('${dateStr}')"`;
+        const click = isFuture ? '' : `onclick="handleDateClick('${dateStr}')"`;  
         cells += `<div class="${classes}" ${click}><span class="day-num">${d}</span>${icon ? `<span class="day-icons">${icon}</span>` : ''}</div>`;
       }
       document.getElementById('section-calendar').innerHTML = `<div class="calendar-nav"><button onclick="handleMonthNav(-1)">‹</button><span class="calendar-month">${year}年${monthNames[month]}</span><button onclick="handleMonthNav(1)">›</button></div><div class="calendar-grid">${weekdays.map(w => `<div class="calendar-weekday">${w}</div>`).join('')}${cells}</div>`;
@@ -226,7 +226,27 @@
     }
 
     function renderSetup() {
-      document.getElementById('app').innerHTML = `<div class="card" style="margin-top:40px"><div class="app-title">💪 gymRecord 初始化</div><p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">首次使用需要配置 GitHub Gist 信息，配置后保存在本机，无需再次输入。</p><div style="display:flex;flex-direction:column;gap:12px"><div><label style="font-size:13px;font-weight:600;color:var(--text-muted);display:block;margin-bottom:4px">Gist ID</label><input id="setup-gist-id" type="text" placeholder="粘贴 Gist ID" style="width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;outline:none"></div><div><label style="font-size:13px;font-weight:600;color:var(--text-muted);display:block;margin-bottom:4px">GitHub Token（仅 gist 权限）</label><input id="setup-token" type="password" placeholder="ghp_xxxxxx" style="width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;outline:none"></div><button onclick="handleSetupSave()" style="padding:14px;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px">保存并开始</button></div></div>`;
+      document.getElementById('app').innerHTML = `
+        <div class="card" style="margin-top:40px">
+          <div class="app-title">💪 gymRecord 初始化</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">首次使用需要配置 GitHub Gist 信息，配置后保存在本机，无需再次输入。</p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div>
+              <label style="font-size:13px;font-weight:600;color:var(--text-muted);display:block;margin-bottom:4px">Gist ID</label>
+              <input id="setup-gist-id" type="text" placeholder="粘贴 Gist ID"
+                style="width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;outline:none">
+            </div>
+            <div>
+              <label style="font-size:13px;font-weight:600;color:var(--text-muted);display:block;margin-bottom:4px">GitHub Token（仅 gist 权限）</label>
+              <input id="setup-token" type="password" placeholder="ghp_xxxxxx"
+                style="width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;outline:none">
+            </div>
+            <button onclick="handleSetupSave()"
+              style="padding:14px;border:none;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px">
+              保存并开始
+            </button>
+          </div>
+        </div>`;
     }
 
     function handleSetupSave() {
