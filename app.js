@@ -27,7 +27,9 @@ const SwipeNav = (() => {
     if (Math.abs(dy) > Math.abs(dx)) { dragging = false; return; }
     const w = wrapper();
     const base = -current * w.offsetWidth;
-    const clamped = Math.max(Math.min(dx, w.offsetWidth * 0.5), -w.offsetWidth * 0.5);
+    const maxDx = current > 0 ? w.offsetWidth * 0.5 : 0;
+    const minDx = current < 1 ? -w.offsetWidth * 0.5 : 0;
+    const clamped = Math.max(Math.min(dx, maxDx), minDx);
     track().style.transform = `translateX(${base + clamped}px)`;
   }
   function onEnd() {
