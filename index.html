@@ -41,13 +41,26 @@
     .card { background: var(--card); border-radius: var(--rlg); padding: 20px; }
 
     /* Stats */
-    .app-label { font-size: 13px; font-weight: 600; color: var(--text2); letter-spacing: 0.04em; margin-bottom: 6px; }
-    .stats-num { font-size: 72px; font-weight: 700; color: var(--text); line-height: 1; letter-spacing: -3px; }
-    .stats-meta { display: flex; align-items: baseline; gap: 8px; margin: 4px 0 18px; }
+    .app-label { font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; text-align: center; margin-bottom: 18px; }
+    .stats-top { display: flex; align-items: center; justify-content: center; gap: 24px; }
+    .stats-left { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .stats-num { font-size: 44px; font-weight: 700; color: var(--text); line-height: 1; letter-spacing: -2px; }
     .stats-denom { font-size: 17px; font-weight: 500; color: var(--text2); }
     .stats-remain { font-size: 13px; color: var(--text3); }
-    .progress-bar { height: 4px; background: var(--fill); border-radius: 2px; overflow: hidden; }
-    .progress-fill { height: 100%; background: var(--primary); border-radius: 2px; transition: width 0.4s ease; }
+    .stats-ring { position: relative; width: 84px; height: 84px; flex-shrink: 0; }
+    .stats-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-bg { fill: none; stroke: var(--fill); stroke-width: 8; }
+    .ring-fg { fill: none; stroke: var(--primary); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
+    .ring-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--text); }
+    .stats-persons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .person-stat { border-radius: var(--r); padding: 12px 14px; display: flex; align-items: center; gap: 7px; }
+    .person-stat.wife { background: var(--wife-soft); }
+    .person-stat.husb { background: var(--husb-soft); }
+    .ps-icon { font-size: 22px; line-height: 1; }
+    .ps-name { font-size: 14px; font-weight: 600; color: var(--text2); }
+    .ps-count { margin-left: auto; font-size: 20px; font-weight: 700; line-height: 1; }
+    .person-stat.wife .ps-count { color: var(--wife); }
+    .person-stat.husb .ps-count { color: var(--husb); }
 
     /* Segmented control */
     .seg { background: var(--fill); border-radius: 9px; padding: 2px; display: flex; }
@@ -240,16 +253,33 @@
     }
 
     function renderStats() {
-      const used = State.records.length, total = CONFIG.CARD_TOTAL, remain = total - used;
-      const pct = Math.min(used / total * 100, 100).toFixed(1);
+      const used = State.records.length, total = CONFIG.CARD_TOTAL, remain = Math.max(total - used, 0);
+      const pct = Math.min(used / total * 100, 100);
+      const hCount = State.records.filter(r => r.person === 'husband').length;
+      const wCount = State.records.filter(r => r.person === 'wife').length;
+      const C = 2 * Math.PI * 36;
+      const offset = C * (1 - pct / 100);
+      const w = CONFIG.PERSONS.wife, h = CONFIG.PERSONS.husband;
       document.getElementById('s-stats').innerHTML = `
         <div class="app-label">💪 GymRecord</div>
-        <div class="stats-num">${used}</div>
-        <div class="stats-meta">
-          <span class="stats-denom">/ ${total} 次</span>
-          <span class="stats-remain">剩余 ${remain} 次</span>
+        <div class="stats-top">
+          <div class="stats-left">
+            <span class="stats-num">${used}</span>
+            <span class="stats-denom">/ ${total} 次</span>
+            <span class="stats-remain">剩余 ${remain} 次</span>
+          </div>
+          <div class="stats-ring">
+            <svg viewBox="0 0 84 84">
+              <circle class="ring-bg" cx="42" cy="42" r="36"/>
+              <circle class="ring-fg" cx="42" cy="42" r="36" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"/>
+            </svg>
+            <span class="ring-label">${Math.round(pct)}%</span>
+          </div>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="stats-persons">
+          <div class="person-stat wife"><span class="ps-icon">${w.icon}</span><span class="ps-name">${w.name}</span><span class="ps-count">${wCount}</span></div>
+          <div class="person-stat husb"><span class="ps-icon">${h.icon}</span><span class="ps-name">${h.name}</span><span class="ps-count">${hCount}</span></div>
+        </div>
       `;
     }
 
