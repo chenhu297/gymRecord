@@ -16,12 +16,14 @@
   --rlg: 20px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { overscroll-behavior: none; }
 body {
   background: var(--bg);
   font-family: -apple-system, 'SF Pro Display', 'PingFang SC', sans-serif;
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  overscroll-behavior: none;
 }
 #app {
   width: 100%;
