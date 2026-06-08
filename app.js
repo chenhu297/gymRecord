@@ -33,7 +33,7 @@ const SwipeNav = (() => {
   function onEnd() {
     if (!dragging) return;
     dragging = false;
-    const threshold = wrapper().offsetWidth / 3;
+    const threshold = wrapper().offsetWidth / 4;
     if (dx < -threshold && current < 1) goTo(1);
     else if (dx > threshold && current > 0) goTo(0);
     else goTo(current);
